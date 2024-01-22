@@ -1,0 +1,36 @@
+For example here is the full email
+
+2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10 
+3mm Tailwind 2022-1 C (87403TAF3) 99.15 bid / 99.80 offer
+
+
+Craig Bonder
+BH | Beech Hill Securities, Inc.
+Managing Director
+880 Third Avenue, 16th floor
+New York, NY 10022
+Office: 212.257.4475
+Cell: 917.930.6363
+Email: cbonder@bh-secs.com <mailto:cbonder@bh-secs.com> 
+
+http://disclaimerbhs.bh-secs.com/
+
+This email message from Beech Hill Securities, Inc. (â€œBeech Hillâ€), including any attachments, (a â€œCommunicationâ€) is for the sole use of its intended recipients and may not be duplicated, re-used, redistributed, or forwarded in whole or in part by any means to any other party. If you are not an intended recipient, please notify the sender, delete it and do not act upon, print, disclose, copy, retain or redistribute it in any manner. Communications are for informational purposes only and not an offer or solicitation to buy or sell any product or service. They may contain privileged or confidential information, or may otherwise be protected by work product immunity or other legal rules, and no such confidentiality or privilege is waived or lost by any error in transmission. No Communication is intended for distribution to, or use by, any person or entity in any location where its distribution or use is contrary to law or regulation, or pursuant to which Beech Hill would be subject to any registration requirement. As no Communication can be guaranteed secure, error-free, uncorrupted, complete or virus free and any Communication may be lost, misdelivered, destroyed, delayed, or intercepted by others, please do not send sensitive or personal data electronically. Beech Hill disclaims all liability in connection with the aforementioned risks associated with electronic communications. All Communications are subject to surveillance, archiving and potential production to regulators and in litigation. These may occur in countries other than the country in which you are located, and may be treated legally differently than in your locale. No Communication is intended to supplant your own evaluation of the matters referenced therein. Prior to any investment decision, investors should obtain sufficient information to ascertain legal, financial, tax and regulatory consequences necessary for such decision. Beech Hill is not a fiduciary or advisor and does not provide advice relating to products or strategies. Past performance is not indicative of future performance. Beech Hill is a registered U.S. broker-dealer, Member FINRA and SIPC.
+
+
+
+We want to cut everything after Craig Bonder in every email
+Craig Bonder
+BH | Beech Hill Securities, Inc.
+Managing Director
+880 Third Avenue, 16th floor
+New York, NY 10022
+Office: 212.257.4475
+Cell: 917.930.6363
+Email: cbonder@bh-secs.com <mailto:cbonder@bh-secs.com> 
+
+http://disclaimerbhs.bh-secs.com/
+
+This email message from Beech Hill Securities, Inc. (â€œBeech Hillâ€), including any attachments, (a â€œCommunicationâ€) is for the sole use of its intended recipients and may not be duplicated, re-used, redistributed, or forwarded in whole or in part by any means to any other party. If you are not an intended recipient, please notify the sender, delete it and do not act upon, print, disclose, copy, retain or redistribute it in any manner. Communications are for informational purposes only and not an offer or solicitation to buy or sell any product or service. They may contain privileged or confidential information, or may otherwise be protected by work product immunity or other legal rules, and no such confidentiality or privilege is waived or lost by any error in transmission. No Communication is intended for distribution to, or use by, any person or entity in any location where its distribution or use is contrary to law or regulation, or pursuant to which Beech Hill would be subject to any registration requirement. As no Communication can be guaranteed secure, error-free, uncorrupted, complete or virus free and any Communication may be lost, misdelivered, destroyed, delayed, or intercepted by others, please do not send sensitive or personal data electronically. Beech Hill disclaims all liability in connection with the aforementioned risks associated with electronic communications. All Communications are subject to surveillance, archiving and potential production to regulators and in litigation. These may occur in countries other than the country in which you are located, and may be treated legally differently than in your locale. No Communication is intended to supplant your own evaluation of the matters referenced therein. Prior to any investment decision, investors should obtain sufficient information to ascertain legal, financial, tax and regulatory consequences necessary for such decision. Beech Hill is not a fiduciary or advisor and does not provide advice relating to products or strategies. Past performance is not indicative of future performance. Beech Hill is a registered U.S. broker-dealer, Member FINRA and SIPC.
+
+If the scanned email does not have this then leave as is.

@@ -1,0 +1,61 @@
+2.5mm IBRD 125A (XS2127855125) offered @ 100.10
+5mm Nakama 2021-1 1 (62984JAA6) offered @ 99.20
+2mm Gateway 2022-1 A (36779CAA4) offered @ **BH trades**
+3mm Mystic 2021-2 B (62865LAC1) offered @ 98.10 
+725k Torrey Pines Re 2023-1 A (89141WAF9) offered @ **BH trades**
+Blue Sky 2023-1 (XS2728630596) bid at 100.15
+Bonanza 2022-1 A (09785EAJ0) bid at 90.00
+Bonanza 2023-1 A (09785EAK7) bid at 99.90
+Citrus 2023-1 B (177510AM6) bid at 102.40
+First Coast 2021-1 (31971CAA1) bid at 96.15
+First Coast 2023-1 (31969UAA5) bid at 101.10
+Hexagon 2023-1 A (428270AA0) bid at 100.50
+Matterhorn 2022-I B (577092AQ2) bid at 98.50
+Merna 2022-2A (59013MAF9) bid at 98.65 
+Montoya 2022-2 (613752AB0) bid at 108.60
+Tailwind 2022-1 B (87403TAE6) bid at 96.90
+Tailwind 2022-1 C (87403TAE) bid at 98.15
+Titania 2023-1 A (888329AC3) bid at 107.40
+
+
+
+
+
+It needs to identify and class Size, Name, CUSIP, Price, and if it was offered or bid.
+
+Example 1:
+
+2.5mm IBRD 125A (XS2127855125) offered @ 100.10
+Name = IBRD 125A
+Size = 2.55mm
+CUSIP = XS2127855125
+Actions = offer
+Price = 100.10
+
+
+Example 2:
+
+2mm Gateway 2022-1 A (36779CAA4) offered @ **BH trades**
+Name = Gateway 2022-1 A
+Size = 2mm
+CUSIP = 36779CAA4
+Actions = offer
+Price = **BH trades**
+
+Example 3:
+4.25mm Cosaint 2021-1 A (22112CAA0) 99.70 bid / 100.10 offer
+Has two outputs:
+
+Output 1:
+Name = Cosaint 2021-1 A
+Size = 4.25mm
+CUSIP = 22112CAA0
+Actions = bid
+Price = 99.70
+
+Output 2:
+Name = Cosaint 2021-1 A
+Size = 4.25mm
+CUSIP = 22112CAA0
+Actions = offer
+Price = 100.10

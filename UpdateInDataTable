@@ -1,0 +1,111 @@
+server <- function(input, output, session) { 
+    # ... [Your existing server code] ...
+
+    ### Function for View Table
+    RV <- reactiveValues(data = data.frame(sql))
+
+    # Add buttons to the data frame
+    observe({
+        RV$data <- addButtons(RV$data)
+    })
+
+    output$d1 <- DT::renderDT({
+        datatable(RV$data, escape = FALSE, selection = 'none', editable = TRUE)
+    }, server = FALSE)
+
+    # Observe cell edits
+    observeEvent(input$d1_cell_edit, {
+        info <- input$d1_cell_edit
+        str(info)
+        RV$data[info$row, info$col] <- info$value
+    })
+
+    # Observe Update button clicks
+    observeEvent(input$update, {
+        row_id <- as.numeric(str_extract(input$update, "\\d+"))
+        updateRowInDB(RV$data[row_id, ])
+    })
+
+    # Observe Cancel button clicks
+    observeEvent(input$cancel, {
+        row_id <- as.numeric(str_extract(input$cancel, "\\d+"))
+        RV$data[row_id, ] <- getOriginalRowData(row_id)
+    })
+
+    # ... [Rest of your existing server code] ...
+}
+
+# ... [Rest of your Shiny app code] ...
+
+
+# Function to add Update and Cancel buttons
+addButtons <- function(df) {
+    df$Actions <- sprintf(
+        "<button id='edit-%s' class='btn btn-primary'>Update</button> <button id='cancel-%s' class='btn btn-danger'>Cancel</button>",
+        1:nrow(df), 1:nrow(df)
+    )
+    df
+}
+
+# Function to update a row in the SQL database
+updateRowInDB <- function(row) {
+    # Assuming 'id' is the primary key and other column names are 'column1', 'column2', etc.
+    query <- sprintf("UPDATE [dbo].[MarketQuotes] SET column1 = '%s', column2 = %d WHERE id = %d",
+                     row$column1, row$column2, row$id)
+    # Execute the SQL query
+    db_conn <- odbcConnect("ILS") 
+    res <- sqlQuery(db_conn, query)
+    odbcClose(db_conn)
+    return(res)
+}
+
+
+# Function to get the original row data
+getOriginalRowData <- function(row_id) {
+    # Query the database to get original data
+    query <- sprintf("SELECT * FROM [dbo].[MarketQuotes] WHERE id = %d", row_id)
+    db_conn <- odbcConnect("ILS") 
+    original_data <- sqlQuery(db_conn, query)
+    odbcClose(db_conn)
+    return(original_data)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+To run these examples, you must have PIL, pytesseract, and PyTorch installed in addition to transformers.
+
+
+
+pip install git+https://github.com/huggingface/transformers.git@2ef774211733f0acf8d3415f9284c49ef219e991

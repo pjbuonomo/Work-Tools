@@ -1,0 +1,46 @@
+# Load necessary R packages
+library(reticulate)
+
+# Load the Python library for transformers
+transformers <- import("transformers")
+
+# Load the pre-trained model and tokenizer
+tokenizer <- transformers$BertTokenizer.from_pretrained("bert-base-uncased")
+model <- transformers$BertModel.from_pretrained("bert-base-uncased")
+
+# Function to classify and format lines
+classify_and_format <- function(text) {
+  # Tokenize and encode the text
+  inputs <- tokenizer$encode_plus(text, return_tensors="pt")
+
+  # Pass the input through the model to get embeddings
+  outputs <- model$forward(input_ids=inputs$input_ids, attention_mask=inputs$attention_mask)
+  embeddings <- outputs$last_hidden_state
+
+  # Example: Classification logic
+  # Replace this with your actual classification logic
+  classification_result <- your_classification_function(embeddings)
+
+  if (classification_result == "Size") {
+    # Format for "Size" lines
+    formatted_output <- paste(text, "bid @ ", your_bid_value, sep="")
+  } else {
+    # Format for "Name" lines
+    formatted_output <- paste(text, "bid @ ", your_bid_value, sep="")
+  }
+
+  return(formatted_output)
+}
+
+# Example usage
+email_content <- c(
+  "4.25mm Cosaint 2021-1 A (22112CAA0) 99.70 bid / 100.10 offer",
+  "Kilimanjaro III Re 2021-2 B-2 (49407PAJ9) bid at 95.60",
+  "Matterhorn Re 2022-1 A (577092AP4) bid at 97.75",
+  "Mystic Re IV 2023-1 A (62865LAD9) bid at 102.90"
+)
+
+for (line in email_content) {
+  formatted_line <- classify_and_format(line)
+  cat(formatted_line, "\n")
+}
