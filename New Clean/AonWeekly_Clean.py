@@ -44,3 +44,68 @@ for index, row in table.iterrows():
 
 # Closing the database connection
 conn.close()
+# Attempt to parse and convert the 'Coupon' column to numeric
+tryCatch({
+  table$Coupon <- table$Coupon %>% parse_number() %>% as.integer()
+}, error = function(e) {
+  cat("Error in 'Coupon' column:\n")
+  cat(e$message, "\n")
+  cat("Problematic values:\n")
+  problematic_values <- table$Coupon[!grepl("^\\d+$", table$Coupon)]
+  cat(problematic_values, sep = "\n")
+})
+
+# Attempt to parse the 'BidPrice' column to numeric
+tryCatch({
+  table$BidPrice <- table$BidPrice %>% parse_number()
+}, error = function(e) {
+  cat("Error in 'BidPrice' column:\n")
+  cat(e$message, "\n")
+  cat("Problematic values:\n")
+  problematic_values <- table$BidPrice[!grepl("^\\d+\\.\\d+$", table$BidPrice)]
+  cat(problematic_values, sep = "\n")
+})
+
+# Attempt to parse the 'OfferPrice' column to numeric
+tryCatch({
+  table$OfferPrice <- table$OfferPrice %>% parse_number()
+}, error = function(e) {
+  cat("Error in 'OfferPrice' column:\n")
+  cat(e$message, "\n")
+  cat("Problematic values:\n")
+  problematic_values <- table$OfferPrice[!grepl("^\\d+\\.\\d+$", table$OfferPrice)]
+  cat(problematic_values, sep = "\n")
+})# Attempt to parse and convert the 'Coupon' column to numeric
+tryCatch({
+  table$Coupon <- table$Coupon %>% parse_number() %>% as.integer()
+}, error = function(e) {
+  cat("Error in 'Coupon' column:\n")
+  cat(e$message, "\n")
+  cat("Problematic values:\n")
+  problematic_values <- table$Coupon[!grepl("^\\d+$", table$Coupon)]
+  cat(problematic_values, sep = "\n")
+})
+
+# Attempt to parse the 'BidPrice' column to numeric
+tryCatch({
+  table$BidPrice <- table$BidPrice %>% parse_number()
+}, error = function(e) {
+  cat("Error in 'BidPrice' column:\n")
+  cat(e$message, "\n")
+  cat("Problematic values:\n")
+  problematic_values <- table$BidPrice[!grepl("^\\d+\\.\\d+$", table$BidPrice)]
+  cat(problematic_values, sep = "\n")
+})
+
+# Attempt to parse the 'OfferPrice' column to numeric
+tryCatch({
+  table$OfferPrice <- table$OfferPrice %>% parse_number()
+}, error = function(e) {
+  cat("Error in 'OfferPrice' column:\n")
+  cat(e$message, "\n")
+  cat("Problematic values:\n")
+  problematic_values <- table$OfferPrice[!grepl("^\\d+\\.\\d+$", table$OfferPrice)]
+  cat(problematic_values, sep = "\n")
+})
+
+
