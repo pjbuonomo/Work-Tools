@@ -44,3 +44,17 @@ for index, row in table.iterrows():
 
 # Closing the database connection
 conn.close()
+PS C:\Users\buonomo> & C:/ProgramData/Anaconda3/python.exe //ad-its.credit-agricole.fr/Amundi_Boston/Homedirs/buonomo/@Config/Desktop/BetterDatabaseTool/AonWeekly_Clean.py
+Traceback (most recent call last):
+  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\BetterDatabaseTool\AonWeekly_Clean.py", line 38, in <module>
+    table[column] = table[column].apply(lambda x: format(x, '.2f'))
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pandas\core\series.py", line 4357, in apply
+    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pandas\core\apply.py", line 1043, in apply
+    return self.apply_standard()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pandas\core\apply.py", line 1098, in apply_standard
+    mapped = lib.map_infer(
+  File "pandas\_libs\lib.pyx", line 2859, in pandas._libs.lib.map_infer
+  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\BetterDatabaseTool\AonWeekly_Clean.py", line 38, in <lambda>
+    table[column] = table[column].apply(lambda x: format(x, '.2f'))
+ValueError: Unknown format code 'f' for object of type 'str'
