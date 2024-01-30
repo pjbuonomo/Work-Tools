@@ -26,8 +26,8 @@ Res Re 2020-2 CL3 76120AAB8 offered @ 99.00
 import pandas as pd
 import random
 
-# Load the data from the CSV file
-df = pd.read_csv('TrainingData.csv', sheet_name='Sheet1')
+# Load the data from the Excel file
+df = pd.read_excel('TrainingData.xlsx', sheet_name='Sheet1')
 
 # Function to generate a sentence based on the data row
 def generate_sentence(row):
@@ -48,8 +48,8 @@ def generate_sentence(row):
 # Apply the function to each row
 df['J'] = df.apply(generate_sentence, axis=1)
 
-# Save the results back to a new CSV file
-df.to_csv('UpdatedTrainingData.csv', index=False)
+# Save the results back to the same Excel file, same sheet
+df.to_excel('TrainingData.xlsx', sheet_name='Sheet1', index=False)
 
 
 
