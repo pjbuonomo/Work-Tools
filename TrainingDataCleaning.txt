@@ -21,7 +21,6 @@ Res Re 2020-2 CL3 76120AAB8 offered @ 99.00
 
 
 
-
 import pandas as pd
 import random
 import openpyxl
@@ -37,7 +36,11 @@ def generate_sentence(row):
     name = row[3]   # Column 'D'
     size = row[4]   # Column 'E'
     action = row[5] # Column 'F'
-    price = row[6]  # Column 'G'
+    
+    try:
+        price = float(row[6])  # Convert price to float
+    except ValueError:
+        return "Invalid price format"  # Handle invalid price format
 
     if action.lower() == 'bid':
         other_action = 'offer'
@@ -58,6 +61,7 @@ def generate_sentence(row):
         f"{cusip} {name} {other_action} @ {other_price}",
         f"{size} {name} ({cusip}) {action}ed at {price}"
     ]
+
     return random.choice(formats)
 
 # Load the data from the Excel file without headers
@@ -80,6 +84,7 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     df.to_excel(writer, sheet_name='Sentences', index=False)
 
 print("Sentences generated and saved to Excel file.")
+
 
 
 
