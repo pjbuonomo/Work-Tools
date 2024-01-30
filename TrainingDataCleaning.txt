@@ -25,9 +25,12 @@ Res Re 2020-2 CL3 76120AAB8 offered @ 99.00
 
 import pandas as pd
 import random
+import openpyxl
 
-# Load the data from the Excel file
-df = pd.read_excel('TrainingData.xlsx', sheet_name='Sheet1')
+# Function to remove a sheet if it exists
+def remove_sheet_if_exists(workbook, sheet_name):
+    if sheet_name in workbook.sheetnames:
+        workbook.remove(workbook[sheet_name])
 
 # Function to generate a sentence based on the data row
 def generate_sentence(row):
@@ -45,12 +48,27 @@ def generate_sentence(row):
     ]
     return random.choice(formats)
 
-# Apply the function to each row
-df['J'] = df.apply(generate_sentence, axis=1)
+# Load the data from the Excel file
+df = pd.read_excel('TrainingData.xlsx', sheet_name='Sheet1')
 
-# Save the results to a new sheet in the same Excel file
-with pd.ExcelWriter('TrainingData.xlsx', mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+# Apply the function to each row
+df['GeneratedSentence'] = df.apply(generate_sentence, axis=1)
+
+# File path for the Excel file
+excel_file_path = 'TrainingData.xlsx'
+
+# Open the workbook and remove the 'Sentences' sheet if it exists
+workbook = openpyxl.load_workbook(excel_file_path)
+remove_sheet_if_exists(workbook, 'Sentences')
+workbook.save(excel_file_path)
+workbook.close()
+
+# Save the dataframe with generated sentences to a new sheet in the same Excel file
+with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     df.to_excel(writer, sheet_name='Sentences', index=False)
+
+print("Sentences generated and saved to Excel file.")
+
 
 
 
