@@ -23,6 +23,33 @@ Res Re 2020-2 CL3 76120AAB8 offered @ 99.00
 
 
 
+import pandas as pd
+import random
+
+# Load the data from the CSV file
+df = pd.read_csv('TrainingData.csv', sheet_name='Sheet1')
+
+# Function to generate a sentence based on the data row
+def generate_sentence(row):
+    formats = [
+        f"{row['G']} bid for {row['E']} {row['D']} ({row['C']})",
+        f"{row['E']} {row['D']} ({row['C']}) offered at {row['G']}" if row['F'] == 'bid' else f"{row['E']} {row['D']} ({row['C']}) bid at {row['G']}",
+        f"{row['E']} {row['D']} ({row['C']}) - {row['G']} bid / {row['G'] + 2} offer",
+        f"{row['D']} ({row['C']}) bid at {row['G']}",
+        f"{row['E']} {row['D']} ({row['C']}) - bid at {row['G']} / offered at {row['G'] + 2}",
+        f"{row['E']} {row['D']} ({row['C']}) - bid @ {row['G']} / offered @ {row['G'] + 2}",
+        f"{row['E']} {row['D']} ({row['C']}) - bid @ {row['G']} / offer @ {row['G'] + 2}",
+        f"{row['C']} {row['D']} offered @ {row['G']}" if row['F'] == 'offer' else f"{row['C']} {row['D']} bid @ {row['G']}",
+        f"{row['C']} {row['D']} offer @ {row['G']}" if row['F'] == 'offer' else f"{row['C']} {row['D']} bid @ {row['G']}",
+        f"{row['E']} {row['D']} ({row['C']}) offered at {row['G']}"
+    ]
+    return random.choice(formats)
+
+# Apply the function to each row
+df['J'] = df.apply(generate_sentence, axis=1)
+
+# Save the results back to a new CSV file
+df.to_csv('UpdatedTrainingData.csv', index=False)
 
 
 
@@ -75,3 +102,10 @@ Res Re 2021-1 CL12 76120AAB8 bid @ 99.00
 2.5mm Ursa 2023-1 AA (90323WAP5) offered @ 100.60
 2.5mm Ursa 2023-1 D (90323WAQ3) offered @ 100.85
 Looking to buy Galileo 2023-1 As & Bs at 100.65. Please let us know if you care to offer.
+
+
+
+
+
+
+
