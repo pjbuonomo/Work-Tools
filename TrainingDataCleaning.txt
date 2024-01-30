@@ -33,26 +33,31 @@ def remove_sheet_if_exists(workbook, sheet_name):
 
 # Function to generate a sentence based on the data row
 def generate_sentence(row):
-    # Accessing columns by index, starting from 0
-    cusip = row[2]    # Column 'C'
-    name = row[3]     # Column 'D'
-    size = row[4]     # Column 'E'
-    action = row[5]   # Column 'F'
-    price = row[6]    # Column 'G'
+    cusip = row[2]  # Column 'C'
+    name = row[3]   # Column 'D'
+    size = row[4]   # Column 'E'
+    action = row[5] # Column 'F'
+    price = row[6]  # Column 'G'
+
+    if action.lower() == 'bid':
+        other_action = 'offer'
+        other_price = price + 2
+    else:
+        other_action = 'bid'
+        other_price = price - 2
 
     formats = [
-        f"{row['G']} bid for {row['E']} {row['D']} ({row['C']})",
-        f"{row['E']} {row['D']} ({row['C']}) offered at {row['G']}" if row['F'] == 'bid' else f"{row['E']} {row['D']} ({row['C']}) bid at {row['G']}",
-        f"{row['E']} {row['D']} ({row['C']}) - {row['G']} bid / {row['G'] + 2} offer",
-        f"{row['D']} ({row['C']}) bid at {row['G']}",
-        f"{row['E']} {row['D']} ({row['C']}) - bid at {row['G']} / offered at {row['G'] + 2}",
-        f"{row['E']} {row['D']} ({row['C']}) - bid @ {row['G']} / offered @ {row['G'] + 2}",
-        f"{row['E']} {row['D']} ({row['C']}) - bid @ {row['G']} / offer @ {row['G'] + 2}",
-        f"{row['C']} {row['D']} offered @ {row['G']}" if row['F'] == 'offer' else f"{row['C']} {row['D']} bid @ {row['G']}",
-        f"{row['C']} {row['D']} offer @ {row['G']}" if row['F'] == 'offer' else f"{row['C']} {row['D']} bid @ {row['G']}",
-        f"{row['E']} {row['D']} ({row['C']}) offered at {row['G']}"
+        f"{price} {action} for {size} {name} ({cusip})",
+        f"{size} {name} ({cusip}) {action}ed at {price}",
+        f"{size} {name} ({cusip}) - {price} {action} / {other_price} {other_action}",
+        f"{name} ({cusip}) {action} at {price}",
+        f"{name} ({cusip}) - {action} at {price} / {other_action}ed at {other_price}",
+        f"{name} ({cusip}) - {action}ed @ {price} / {other_action} @ {other_price}",
+        f"{name} ({cusip}) - {action} @ {price} / {other_action} @ {other_price}",
+        f"{cusip} {name} {action}ed @ {price}",
+        f"{cusip} {name} {other_action} @ {other_price}",
+        f"{size} {name} ({cusip}) {action}ed at {price}"
     ]
-
     return random.choice(formats)
 
 # Load the data from the Excel file without headers
@@ -75,6 +80,7 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     df.to_excel(writer, sheet_name='Sentences', index=False)
 
 print("Sentences generated and saved to Excel file.")
+
 
 
 
