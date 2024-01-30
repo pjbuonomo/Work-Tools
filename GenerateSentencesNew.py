@@ -9,24 +9,17 @@ def remove_sheet_if_exists(workbook, sheet_name):
 
 # Function to generate a sentence based on the data row
 def generate_sentence(row):
-    cusip = row[2]  # Column 'C'
-    name = row[3]   # Column 'D'
-    size = row[4]   # Column 'E'
-    action = str(row[5]).lower()  # Convert action to string and lowercase
+    cusip = row[0]  # Column 1
+    name = row[1]   # Column 1
+    size = row[2]   # Column 2
+    action = str(row[3]).strip().lower()  # Column 3
     try:
-        price = float(row[6])  # Convert price to float
+        price = float(row[4])  # Column 4
     except ValueError:
-        return "Invalid price format"  # Handle invalid price format
+        return "Invalid price format"
 
-    # Conditional logic for action and other action
-    if action == 'bid':
-        other_action = 'offer'
-        other_price = price + 2
-    elif action == 'offer':
-        other_action = 'bid'
-        other_price = price - 2
-    else:
-        return "Invalid action"  # Handle invalid action
+    other_action = 'offer' if action == 'bid' else 'bid'
+    other_price = price + 2 if action == 'bid' else price - 2
 
     formats = [
         f"{price} {action} for {size} {name} ({cusip})",
@@ -63,49 +56,3 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     df.to_excel(writer, sheet_name='Sentences', index=False)
 
 print("Sentences generated and saved to Excel file.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
