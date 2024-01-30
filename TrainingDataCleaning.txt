@@ -48,8 +48,10 @@ def generate_sentence(row):
 # Apply the function to each row
 df['J'] = df.apply(generate_sentence, axis=1)
 
-# Save the results back to the same Excel file, same sheet
-df.to_excel('TrainingData.xlsx', sheet_name='Sheet1', index=False)
+# Save the results to a new sheet in the same Excel file
+with pd.ExcelWriter('TrainingData.xlsx', mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+    df.to_excel(writer, sheet_name='Sentences', index=False)
+
 
 
 
@@ -102,8 +104,6 @@ Res Re 2021-1 CL12 76120AAB8 bid @ 99.00
 2.5mm Ursa 2023-1 AA (90323WAP5) offered @ 100.60
 2.5mm Ursa 2023-1 D (90323WAQ3) offered @ 100.85
 Looking to buy Galileo 2023-1 As & Bs at 100.65. Please let us know if you care to offer.
-
-
 
 
 
