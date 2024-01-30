@@ -2,6 +2,29 @@
 
 =IF(raw!E1=0, 0, IF(raw!E1<1000000, ROUND(raw!E1/1000, 0)&"k", IF(MOD(raw!E1, 1000000) = 0, ROUND(raw!E1/1000000, 0)&"mm", TEXT(raw!E1/1000000, "0.##")&"mm")))
 
+Unique Formats:
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+1mm Mayflower 2023-1 B (57839MAB4) offered at 103.50
+5mm Kilimanjaro 2021-1 C (49407PAG5) - 99.10 bid / 100.10 offer
+Blue Sky 2023-1 (XS2728630596) bid at 100.60
+5mm Kilimanjaro 2021-1 C (49407PAG5) - 99.10 bid / 100.10 offer
+Montoya 2022-2 (613752AB0) bid at 109.00
+5mm Kilimanjaro 2021-1 C (49407PAG5) offered @ 100.10
+87403TAD8 Tailwind Re 2021-1 A bid @ 97.65
+87403TAD8 Tailwind Re 2021-1 A offer @ 97.65
+Res Re 2020-2 CL3 76120AAB8 bid @ 99.00
+Res Re 2020-2 CL3 76120AAB8 offered @ 99.00
+5mm Kilimanjaro 2021-1 C (49407PAG5) - bid at 99.10 / offered at 100.10
+5mm Kilimanjaro 2021-1 C (49407PAG5) - bid @ 99.10 / offered @ 100.10
+5mm Kilimanjaro 2021-1 C (49407PAG5) - bid @ 99.10 / offer @ 100.10
+5mm Kilimanjaro 2021-1 C (49407PAG5) offered at 100.10
+
+
+
+
+
+
+
 
 
 74.50 bid for 3264 Re 2022-1 (88577CAB7)
