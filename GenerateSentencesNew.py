@@ -9,29 +9,27 @@ def remove_sheet_if_exists(workbook, sheet_name):
 
 # Function to generate a sentence based on the data row
 def generate_sentence(row):
-    cusip = row[0]  # Column 1
-    name = row[1]   # Column 1
-    size = row[2]   # Column 2
-    action = str(row[3]).strip().lower()  # Column 3
-    try:
-        price = float(row[4])  # Column 4
-    except ValueError:
-        return "Invalid price format"
+    cusip = row[0]  # Column 1 (CUSIP)
+    name = row[1]   # Column 1 (Name)
+    size = row[2]   # Column 2 (Size)
+    action = row[3].strip().lower()  # Column 3 (Actions)
+    price = row[4]  # Column 4 (Price)
 
-    other_action = 'offer' if action == 'bid' else 'bid'
-    other_price = price + 2 if action == 'bid' else price - 2
+    # Generate a random other_price between 98.20 and 100.10
+    other_price = round(random.uniform(98.20, 100.10), 2)
 
+    # Sentence formats
     formats = [
         f"{price} {action} for {size} {name} ({cusip})",
-        f"{size} {name} ({cusip}) {action}ed at {price}",
-        f"{size} {name} ({cusip}) - {price} {action} / {other_price} {other_action}",
-        f"{name} ({cusip}) {action} at {price}",
-        f"{cusip} {name} {action}ed @ {price}",
-        f"{name} ({cusip}) - {action} @ {price} / {other_action} @ {other_price}",
-        f"{name} ({cusip}) - {action}ed at {price} / {other_action}ed at {other_price}",
-        f"{size} {name} ({cusip}) - {action}ed at {price} / {other_action}ed at {other_price}",
-        f"{size} {name} ({cusip}) {action}ed @ {price}",
-        f"{size} {name} ({cusip}) - {action} @ {price} / {other_action} @ {other_price}"
+        f"{size} {name} ({cusip}) offered at {price}" if action == 'bid' else f"{size} {name} ({cusip}) bid at {price}",
+        f"{size} {name} ({cusip}) - {price} bid / {other_price} offer",
+        f"{name} ({cusip}) bid at {price}",
+        f"{size} {name} ({cusip}) - bid at {price} / offered at {other_price}",
+        f"{size} {name} ({cusip}) - bid @ {price} / offered @ {other_price}",
+        f"{size} {name} ({cusip}) - bid @ {price} / offer @ {other_price}",
+        f"{cusip} {name} offered @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
+        f"{cusip} {name} offer @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
+        f"{size} {name} ({cusip}) offered at {price}"
     ]
 
     return random.choice(formats)
