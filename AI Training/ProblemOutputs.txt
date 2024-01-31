@@ -1,0 +1,40 @@
+Tailwind 2022-1 B (87403TAE6) bid at 99
+2.25mm Gateway 2023-3 A (36779CAF3) 102 bid / 107.00 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+3mm Mystic 2021-2 B (62865LAC1) - 97.35 bid / 98.10 offer
+1.25mm Gateway 2023-1 A (36779CAC0) offered @ 109.90
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+2mm Northshore 2022-1 A (666842AE9) - 103.50 bid / 104 offer
+2.5mm Galileo 2023-1 A (36354TAN2)- 101.25 bid / 101.60 offer
+2.5mm Galileo 2023-1 B (36354TAP7) -101.25 bid / 101.60 offer
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+2mm Northshore 2022-1 A (666842AE9) - 103.50 bid / 104 offer
+1.75mm Galileo 2023-1 B (36354TAP7) offered @ 101.50
+2.5mm Ursa 2023-1 AA (90323WAP5) offered @ 100.60
+2.5mm Ursa 2023-1 D (90323WAQ3) offered @ 100.85
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+500k Hypatia Re 2023-1 A (44914CAC0)- 104.50 bid / 106.20 offer
+3mm Hypatia 2023-1 A (44914CAC0)- 105.00 bid / 105.90 offer
+
+
+
+250k SD RE 2021-1 A (78414BAC5) - 98.60 bid / 99.10 offer
+
+ERROR: Outputting as
+250k SD RE 2021-1 A		78414BAC5	offered	99.10
+
+Should be outputting as two entries:
+SD RE 2021-1 A | 250k 	|	78414BAC5 |	bid	| 98.50
+SD RE 2021-1 A | 250k 	|	78414BAC5 |	offered	| 99.10
+
+
+
+
+
