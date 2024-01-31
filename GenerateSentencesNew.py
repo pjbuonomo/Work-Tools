@@ -11,37 +11,35 @@ def remove_sheet_if_exists(workbook, sheet_name):
 def generate_sentence(row):
     cusip = str(row[0]).strip()  # Column 1 (CUSIP)
     name = str(row[1]).strip()   # Column 1 (Name)
-    size = row[2]   # Column 2
-    action = str(row[3]).strip().lower()  # Column 3
+    size = row[2]   # Column 2 (Size)
+    action = str(row[3]).strip().lower()  # Column 3 (Actions)
     price = row[4]  # Column 4 (Price)
 
     # Generate a random other_price between 98.20 and 100.10
     other_price = round(random.uniform(98.20, 100.10), 2)
 
-    # Define sentence formats
-    formats_with_size = [
-        f"{price} {action} for {size} {name} ({cusip})",
-        f"{size} {name} ({cusip}) offered at {price}" if action == 'bid' else f"{size} {name} ({cusip}) bid at {price}",
-        f"{size} {name} ({cusip}) - {price} bid / {other_price} offer",
-        f"{size} {name} ({cusip}) - bid at {price} / offered at {other_price}",
-        f"{size} {name} ({cusip}) - bid @ {price} / offered @ {other_price}",
-        f"{size} {name} ({cusip}) - bid @ {price} / offer @ {other_price}",
-        f"{size} {name} ({cusip}) {action}ed @ {price}",
-        f"{size} {name} ({cusip}) - {action} @ {price} / {other_action} @ {other_price}"
-    ]
-
-    formats_without_size = [
-        f"{name} ({cusip}) bid at {price}",
-        f"{cusip} {name} offered @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
-        f"{cusip} {name} offer @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
-        f"{name} ({cusip}) offered at {price}"
-    ]
-
-    # Choose the appropriate list of formats based on size
+    # Different sentence formats based on whether size is 0 or not
     if size == 0:
-        formats = formats_without_size
+        # Formats without size
+        formats = [
+            f"{cusip} {name} offered @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
+            f"{cusip} {name} offer @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
+            f"{name} ({cusip}) bid at {price}",
+            f"{name} ({cusip}) offered at {price}"
+        ]
     else:
-        formats = formats_with_size + formats_without_size
+        # All formats
+        formats = [
+            f"{price} {action} for {size} {name} ({cusip})",
+            f"{size} {name} ({cusip}) offered at {price}" if action == 'bid' else f"{size} {name} ({cusip}) bid at {price}",
+            f"{size} {name} ({cusip}) - {price} bid / {other_price} offer",
+            f"{size} {name} ({cusip}) - bid at {price} / offered at {other_price}",
+            f"{size} {name} ({cusip}) - bid @ {price} / offered @ {other_price}",
+            f"{size} {name} ({cusip}) - bid @ {price} / offer @ {other_price}",
+            f"{cusip} {name} offered @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
+            f"{cusip} {name} offer @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
+            f"{size} {name} ({cusip}) offered at {price}"
+        ]
 
     return random.choice(formats)
 
@@ -65,3 +63,49 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     df.to_excel(writer, sheet_name='Sentences', index=False)
 
 print("Sentences generated and saved to Excel file.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
