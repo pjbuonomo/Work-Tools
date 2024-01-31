@@ -29,19 +29,24 @@ def parse_line(line):
     entries = []
 
     for key, pattern in patterns.items():
-        match = re.match(pattern, line)
-        if match:
+    if re.match(pattern, line):
+        for match in re.finditer(pattern, line):
             groups = match.groups()
             entry = {"Sentence": line, "Function": key, "Error": ""}
+            if key == "size_name_cusip_bid_offer":
+                # Create two separate entries for bid and offer
+                entry_bid = entry.copy()
+                entry_bid.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5]})
+                entries.append(entry_bid)
 
-            # Check if index exists in groups before accessing
-            entry["Name"] = groups[1].strip() if len(groups) > 1 and groups[1] else ""
-            entry["Size"] = groups[0] if key == "size_name_cusip_offered_at_price" and len(groups) > 0 else ""
-            entry["CUSIP"] = groups[2] if key != "cusip_first_bid_at_price" and len(groups) > 2 else (groups[0] if len(groups) > 0 else "")
-            entry["Actions"] = groups[3] if len(groups) > 3 and groups[3] else ""
-            entry["Price"] = groups[4] if len(groups) > 4 and groups[4] else ""
-
-            entries.append(entry)
+                entry_offer = entry.copy()
+                entry_offer.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[6]})
+                entries.append(entry_offer)
+            elif key == "size_name_cusip_offered_at_price":
+                # Determine if it's a bid or offer based on the line content
+                action = "offer" if "offered" in line else "bid"
+                entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[5]})
+                entries.append(entry)
 
     return entries if entries else [default_dict]
 
