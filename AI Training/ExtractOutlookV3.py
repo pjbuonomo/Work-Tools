@@ -29,19 +29,22 @@ def parse_line(line):
     entries = []
 
     for key, pattern in patterns.items():
-        if re.match(pattern, line):
-            for match in re.finditer(pattern, line):
-                groups = match.groups()
-                entry = {"Sentence": line, "Function": key, "Error": ""}
+        match = re.match(pattern, line)
+        if match:
+            groups = match.groups()
+            entry = {"Sentence": line, "Function": key, "Error": ""}
 
-                # Check for None before applying strip() and assigning values
-                entry["Name"] = groups[1].strip() if groups[1] else ""
-                entry["Size"] = groups[0] if key == "size_name_cusip_offered_at_price" and groups[0] else ""
-                entry["CUSIP"] = groups[2] if key != "cusip_first_bid_at_price" and groups[2] else (groups[0] if groups[0] else "")
-                entry["Actions"] = groups[3] if groups[3] else ""
-                entry["Price"] = groups[4] if groups[4] else ""
+            # Use get_group function to safely get group values
+            def get_group(index):
+                return groups[index] if index < len(groups) and groups[index] is not None else ""
 
-                entries.append(entry)
+            entry["Name"] = get_group(1).strip()
+            entry["Size"] = get_group(0) if key == "size_name_cusip_offered_at_price" else ""
+            entry["CUSIP"] = get_group(2) if key != "cusip_first_bid_at_price" else get_group(0)
+            entry["Actions"] = get_group(3)
+            entry["Price"] = get_group(4)
+
+            entries.append(entry)
 
     return entries if entries else [default_dict]
 
