@@ -154,10 +154,77 @@ Res Re 2021-2 CL3 76114NAF9 bid @ 96.75
 5mm Kilimanjaro 2021-1 C (49407PAG5) - 99.10 bid / 100.10 offer
 74.50 bid for 3264 Re 2022-1 (88577CAB7)
 64.50 bid for Herbie 2021-1 A (42703VAE3)
-750k Gateway 2023-1 A (36779CAC0) offered @ **BH trades and we care to buy more**
 2mm Mystic Re IV 2021-2 A (62865LAB3) - 98.25 bid / 99.10 offer
 3.25mm Res Re 2023 II 5 (76090WAC4) offered @ 100.85
 3.75mm Titania Re 2023-1 A (888329AC3) offered @ 108.65
 6.5mm Tailwind 2022-1 C (87403TAF3) offered @ 100.10
 4mm Vista 2022-1 A (92840DAB8) - 104.10 bid / 104.50 offer
 3mm Hypatia 2023-1 A (44914CAC0)- 105.00 bid / 105.90 offer
+Alamo 2023-1 A (011395AJ9) bid at 102.50
+Blue Sky 2023-1 (XS2728630596) bid at 100.15
+Bonanza 2022-1 A (09785EAJ0) bid at 90.00
+Bonanza 2023-1 A (09785EAK7) bid at 99.90
+Citrus 2023-1 B (177510AM6) bid at 102.40
+Easton 2024-1 A (27777AAA9) bid at 100.25
+First Coast 2021-1 (31971CAA1) bid at 96.15
+First Coast 2023-1 (31969UAA5) bid at 101.10
+Galileo 2023-1 B (36354TAP7) bid at 100.25
+Galileo 2023-1 A (36354TAN2) bid at 100.25
+Hypatia 2023-1 A (44914CAC0) bid at 104.35
+Hexagon 2023-1 A (428270AA0) bid at 100.50
+Lightning 2023-1 A (532242AA2) bid at 106.30
+Matterhorn 2022-I B (577092AQ2) bid at 98.50
+Merna 2022-2A (59013MAF9) bid at 98.65
+Merna 2023-2 A (59013MAJ1) bid at 104.35
+Mona Lisa 2023-1 B (608800AG3) bid at 107.75
+Montoya 2022-2 (613752AB0) bid at 108.60
+Montoya 2024-1 A (613752AC8) bid at 101.00
+Ocelot 2023-1 A (675951AA5) bid at 100.30
+Residential Re 2023-2 5 (76090WAC4) bid at 100.45
+Tailwind 2022-1 B (87403TAE6) bid at 99
+Tailwind 2022-1 C (87403TAE) bid at 99.20
+Titania 2021-1 A (888329AA7) bid at 100.40
+Titania 2021-2 A (888329AB5) bid at 97.50
+Titania 2023-1 A (888329AC3) bid at 108.50
+Ursa 2023-1 C (90323WAM2) bid at 100.45
+Ursa 2023-3 D (90323WAQ3) bid at 100.35
+5mm Tailwind 2022-1 C (87403TAF3) 99.20 bid / 99.50 offer
+500k Res Re 2020-I 13 (76124AAB4) offered @ 98.30
+5mm Merna 2022-1 (59013MAE2) offered @ 100.50
+5mm Tailwind 2022-1 C (87403TAF3) **BH trades**
+500k Riverfront 2021-1 A (76870YAD4) 97.90 bid / 98.60 offer
+2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.00
+Alamo 2023-1 A (011395AJ9) bid at 102.50
+Blue Sky 2023-1 (XS2728630596) bid at 100.60
+Bonanza 2022-1 A (09785EAJ0) bid at 90.00
+Bonanza 2023-1 A (09785EAK7) bid at 99.90
+Citrus 2023-1 B (177510AM6) bid at 102.40
+Easton 2024-1 A (27777AAA9) bid at 100.25
+First Coast 2021-1 (31971CAA1) bid at 96.15
+First Coast 2023-1 (31969UAA5) bid at 101.10
+Galileo 2023-1 B (36354TAP7) bid at 100.25
+Galileo 2023-1 A (36354TAN2) bid at 100.25
+Hypatia 2023-1 A (44914CAC0) bid at 104.35
+Hexagon 2023-1 A (428270AA0) bid at 100.90
+Lightning 2023-1 A (532242AA2) bid at 106.30
+Matterhorn 2022-I B (577092AQ2) bid at 98.50
+Merna 2022-2A (59013MAF9) bid at 98.65
+Merna 2023-2 A (59013MAJ1) bid at 104.35
+Mona Lisa 2023-1 B (608800AG3) bid at 107.75
+Montoya 2022-2 (613752AB0) bid at 108.60
+Montoya 2024-1 A (613752AC8) bid at 101.00
+Ocelot 2023-1 A (675951AA5) bid at 100.30
+Residential Re 2023-2 5 (76090WAC4) bid at 100.45
+Tailwind 2022-1 B (87403TAE6) bid at 99
+Tailwind 2022-1 C (87403TAE) bid at 99.20
+Titania 2021-1 A (888329AA7) bid at 100.40
+Titania 2021-2 A (888329AB5) bid at 97.50
+Titania 2023-1 A (888329AC3) bid at 108.50
+Ursa 2023-1 C (90323WAM2) bid at 100.45
+Ursa 2023-3 D (90323WAQ3) bid at 100.35
+5mm Merna 2022-1 (59013MAE2) offered @ 100.50
+500k Riverfront 2021-1 A (76870YAD4) 97.90 bid / 98.60 offer
+2.25mm Gateway 2023-3 A (36779CAF3) 102 bid / 107.00 offer
+3mm Mystic 2021-2 B (62865LAC1) offered @ 98.10
+3mm Gateway 2022-1 A (36779CAA4) offered @ 102.00
+1m Purple Re 2023-1 A (74639NAA1) offered at 103.10
