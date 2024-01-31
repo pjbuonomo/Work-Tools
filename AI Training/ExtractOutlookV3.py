@@ -32,15 +32,16 @@ def parse_line(line):
         if re.match(pattern, line):
             for match in re.finditer(pattern, line):
                 groups = match.groups()
-                if key in ["size_name_cusip_offered_at_price", "name_cusip_offered_at_price_no_size", "cusip_first_bid_at_price"]:
-                    entries.append({"Name": groups[1].strip(), "Size": groups[0] if key == "size_name_cusip_offered_at_price" else "", "CUSIP": groups[2] if key != "cusip_first_bid_at_price" else groups[0], "Actions": groups[3], "Price": groups[4], "Sentence": line, "Function": key, "Error": ""})
-                elif key == "name_cusip_bid_at_price":
-                    entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": groups[2], "Price": groups[3], "Sentence": line, "Function": key, "Error": ""})
-                elif key == "size_name_cusip_bid_offer":
-                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5], "Sentence": line, "Function": key, "Error": ""})
-                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[6], "Sentence": line, "Function": key, "Error": ""})
-                elif key == "bid_price_for_name_cusip":
-                    entries.append({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0], "Sentence": line, "Function": key, "Error": ""})
+                entry = {"Sentence": line, "Function": key, "Error": ""}
+
+                # Check for None before applying strip() and assigning values
+                entry["Name"] = groups[1].strip() if groups[1] else ""
+                entry["Size"] = groups[0] if key == "size_name_cusip_offered_at_price" and groups[0] else ""
+                entry["CUSIP"] = groups[2] if key != "cusip_first_bid_at_price" and groups[2] else (groups[0] if groups[0] else "")
+                entry["Actions"] = groups[3] if groups[3] else ""
+                entry["Price"] = groups[4] if groups[4] else ""
+
+                entries.append(entry)
 
     return entries if entries else [default_dict]
 
@@ -101,10 +102,3 @@ workbook.close()
 with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     emails_df.to_excel(writer, sheet_name='Unread Emails', index=False)
     sorted_df.to_excel(writer, sheet_name='Sorted', index=False)
-
-Traceback (most recent call last):
-  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 81, in <module>
-    entries = parse_line(line.strip())
-  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 36, in parse_line
-    entries.append({"Name": groups[1].strip(), "Size": groups[0] if key == "size_name_cusip_offered_at_price" else "", "CUSIP": groups[2] if key != "cusip_first_bid_at_price" else groups[0], "Actions": groups[3], "Price": groups[4], "Sentence": line, "Function": key, "Error": ""})
-AttributeError: 'NoneType' object has no attribute 'strip'
