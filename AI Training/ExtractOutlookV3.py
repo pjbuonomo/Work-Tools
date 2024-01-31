@@ -34,15 +34,12 @@ def parse_line(line):
             groups = match.groups()
             entry = {"Sentence": line, "Function": key, "Error": ""}
 
-            # Use get_group function to safely get group values
-            def get_group(index):
-                return groups[index] if index < len(groups) and groups[index] is not None else ""
-
-            entry["Name"] = get_group(1).strip()
-            entry["Size"] = get_group(0) if key == "size_name_cusip_offered_at_price" else ""
-            entry["CUSIP"] = get_group(2) if key != "cusip_first_bid_at_price" else get_group(0)
-            entry["Actions"] = get_group(3)
-            entry["Price"] = get_group(4)
+            # Check if index exists in groups before accessing
+            entry["Name"] = groups[1].strip() if len(groups) > 1 and groups[1] else ""
+            entry["Size"] = groups[0] if key == "size_name_cusip_offered_at_price" and len(groups) > 0 else ""
+            entry["CUSIP"] = groups[2] if key != "cusip_first_bid_at_price" and len(groups) > 2 else (groups[0] if len(groups) > 0 else "")
+            entry["Actions"] = groups[3] if len(groups) > 3 and groups[3] else ""
+            entry["Price"] = groups[4] if len(groups) > 4 and groups[4] else ""
 
             entries.append(entry)
 
