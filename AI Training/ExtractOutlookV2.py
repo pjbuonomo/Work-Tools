@@ -102,3 +102,9 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     sorted_df.to_excel(writer, sheet_name='Sorted', index=False)
 
 print("Emails processed and saved to Excel file.")
+Traceback (most recent call last):
+  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 80, in <module>  
+    entries = parse_line(line.strip())
+  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 30, in parse_line
+    size, name, cusip, price, action, alt_price = match.groups()
+ValueError: too many values to unpack (expected 6)
