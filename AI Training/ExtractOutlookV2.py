@@ -15,8 +15,6 @@ def remove_sheet_if_exists(workbook, sheet_name):
     if sheet_name in workbook.sheetnames:
         workbook.remove(workbook[sheet_name])
 
-import re
-
 def parse_line(line):
     patterns = {
         "size_name_cusip_offered_at_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d*\.\d+)",
@@ -27,23 +25,23 @@ def parse_line(line):
         "cusip_first_bid_at_price": r"(\w+)\s+([\w\s-]+?)\s+bid\s+(?:@|at)\s+(\d+\.\d+)"
     }
 
-    default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Error": line}
+    default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Sentence": line, "Function": "No Match", "Error": line}
     entries = []
 
     for key, pattern in patterns.items():
         if re.match(pattern, line):
             for match in re.finditer(pattern, line):
                 groups = match.groups()
+                entry = {"Sentence": line, "Function": key, "Error": ""}
                 if key in ["size_name_cusip_offered_at_price", "size_name_cusip_bid_offer"]:
-                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid/offer", "Price": groups[-1], "Error": ""})
+                    entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid/offer", "Price": groups[-1]})
                 elif key in ["name_cusip_bid_at_price", "name_cusip_offered_at_price_no_size", "cusip_first_bid_at_price"]:
-                    entries.append({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": "bid/offer", "Price": groups[2], "Error": ""})
+                    entry.update({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": "bid/offer", "Price": groups[2]})
                 elif key == "bid_price_for_name_cusip":
-                    entries.append({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0], "Error": ""})
+                    entry.update({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0]})
+                entries.append(entry)
 
     return entries if entries else [default_dict]
-
-# Continue with your existing code...
 
 
 
