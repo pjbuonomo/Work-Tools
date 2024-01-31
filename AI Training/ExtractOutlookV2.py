@@ -108,3 +108,60 @@ Traceback (most recent call last):
   File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 30, in parse_line
     size, name, cusip, price, action, alt_price = match.groups()
 ValueError: too many values to unpack (expected 6)
+
+
+
+
+
+2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10
+2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10
+Tailwind 2022-1 B (87403TAE6) bid at 99
+2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.00
+Tailwind 2022-1 B (87403TAE6) bid at 99
+2.25mm Gateway 2023-3 A (36779CAF3) 102 bid / 107.00 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+3mm Mystic 2021-2 B (62865LAC1) - 97.35 bid / 98.10 offer
+1.25mm Gateway 2023-1 A (36779CAC0) offered @ 109.90
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+2mm Northshore 2022-1 A (666842AE9) - 103.50 bid / 104 offer
+2.5mm Galileo 2023-1 A (36354TAN2)- 101.25 bid / 101.60 offer
+2.5mm Galileo 2023-1 B (36354TAP7) -101.25 bid / 101.60 offer
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+2mm Northshore 2022-1 A (666842AE9) - 103.50 bid / 104 offer
+1.75mm Galileo 2023-1 B (36354TAP7) offered @ 101.50
+2.5mm Ursa 2023-1 AA (90323WAP5) offered @ 100.60
+2.5mm Ursa 2023-1 D (90323WAQ3) offered @ 100.85
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+500k Hypatia Re 2023-1 A (44914CAC0)- 104.50 bid / 106.20 offer
+500k Hypatia Re 2023-1 A (44914CAC0)- 104.50 bid / 106.20 offer
+49407PAJ9 Kilimanjaro Re III 2021-2 B-2 bid @ 96.5
+613752AB0 Montoya Re 2022-2 A bid @ 109.5
+869255AA7 Sussex Capital 2021-1 bid @ 99.4
+87403TAD8 Tailwind Re 2021-1 A bid @ 97.65
+888329AB5 Titania Re 2021-2 A bid @ 97.8
+888329AC3 Titania Re 2023-1 A bid @ 108.6
+Res Re 2020-2 CL4 76120AAC6 bid @ 98.50
+Res Re 2021-2 CL3 76114NAF9 bid @ 96.75
+Res Re 2021-1 CL12 76120AAB8 bid @ 99.00
+Res Re 2020-2 CL3 76120AAB8 bid @ 99.00
+Res Re 2020-2 CL4 76120AAC6 bid @ 98.50
+Res Re 2021-2 CL3 76114NAF9 bid @ 96.75
+425k Mayflower 2023-1 (57839MAA6) - 101.70 bid / 102.35 offer
+425k Mayflower 2023-1 (57839MAA6) - 101.90 bid / 102.35 offer
+5mm Kilimanjaro 2021-1 C (49407PAG5) - 99.10 bid / 100.10 offer
+74.50 bid for 3264 Re 2022-1 (88577CAB7)
+64.50 bid for Herbie 2021-1 A (42703VAE3)
+750k Gateway 2023-1 A (36779CAC0) offered @ **BH trades and we care to buy more**
+2mm Mystic Re IV 2021-2 A (62865LAB3) - 98.25 bid / 99.10 offer
+3.25mm Res Re 2023 II 5 (76090WAC4) offered @ 100.85
+3.75mm Titania Re 2023-1 A (888329AC3) offered @ 108.65
+6.5mm Tailwind 2022-1 C (87403TAF3) offered @ 100.10
+4mm Vista 2022-1 A (92840DAB8) - 104.10 bid / 104.50 offer
+3mm Hypatia 2023-1 A (44914CAC0)- 105.00 bid / 105.90 offer
