@@ -15,13 +15,16 @@ def remove_sheet_if_exists(workbook, sheet_name):
     if sheet_name in workbook.sheetnames:
         workbook.remove(workbook[sheet_name])
 
+import re
+
 def parse_line(line):
     patterns = {
-        "size_name_cusip_action_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(bid|offered|offer)\s*(?:@|at|-)?\s*(\d*\.\d+)",
-        "name_cusip_action_price": r"([\w\s-]+?)\s+\((\w+)\)\s+(bid|offered|offer)\s*(?:@|at|-)?\s*(\d+\.\d+)",
-        "dual_action": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(\d+\.\d+)\s+(bid)\s+/\s+(\d+\.\d+)\s+(offer)",
-        "bid_for": r"(\d+\.\d+)\s+bid\s+for\s+([\w\s-]+?)\s+\((\w+)\)",
-        "name_cusip_dual_action": r"([\w\s-]+?)\s+\((\w+)\)\s+-\s+(\d+\.\d+)\s+bid\s+/\s+(\d+\.\d+)\s+offer"
+        "size_name_cusip_offered_at_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d*\.\d+)",
+        "name_cusip_bid_at_price": r"([\w\s-]+?)\s+\((\w+)\)\s+bid\s+(?:@|at)\s+(\d+\.\d+)",
+        "size_name_cusip_bid_offer": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(\d+\.\d+)\s+bid\s+/\s+(\d+\.\d+)\s+offer",
+        "name_cusip_offered_at_price_no_size": r"([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d+\.\d+)",
+        "bid_price_for_name_cusip": r"(\d+\.\d+)\s+bid\s+for\s+([\w\s-]+?)\s+\((\w+)\)",
+        "cusip_first_bid_at_price": r"(\w+)\s+([\w\s-]+?)\s+bid\s+(?:@|at)\s+(\d+\.\d+)"
     }
 
     default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Error": line}
@@ -31,21 +34,16 @@ def parse_line(line):
         if re.match(pattern, line):
             for match in re.finditer(pattern, line):
                 groups = match.groups()
-                if key == "size_name_cusip_action_price" and len(groups) == 8:
-                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": groups[5], "Price": groups[7], "Error": ""})
-                elif key == "name_cusip_action_price" and len(groups) == 5:
-                    entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": groups[2], "Price": groups[4], "Error": ""})
-                elif key == "dual_action" and len(groups) == 8:
-                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[6], "Error": ""})
-                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[7], "Error": ""})
-                elif key == "bid_for" and len(groups) == 3:
+                if key in ["size_name_cusip_offered_at_price", "size_name_cusip_bid_offer"]:
+                    entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid/offer", "Price": groups[-1], "Error": ""})
+                elif key in ["name_cusip_bid_at_price", "name_cusip_offered_at_price_no_size", "cusip_first_bid_at_price"]:
+                    entries.append({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": "bid/offer", "Price": groups[2], "Error": ""})
+                elif key == "bid_price_for_name_cusip":
                     entries.append({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0], "Error": ""})
-                elif key == "name_cusip_dual_action" and len(groups) == 4:
-                    entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "bid", "Price": groups[2], "Error": ""})
-                    entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "offer", "Price": groups[3], "Error": ""})
 
     return entries if entries else [default_dict]
 
+# Continue with your existing code...
 
 
 
