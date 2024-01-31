@@ -16,32 +16,41 @@ def remove_sheet_if_exists(workbook, sheet_name):
         workbook.remove(workbook[sheet_name])
 
 def parse_line(line):
-    size_first_pattern = r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(\d+\.\d+)\s+(bid|offered|offer)\s*(?:@|at|-)?\s*(\d*\.\d+)?"
-    name_first_pattern = r"([\w\s-]+?)\s+\((\w+)\)\s+(\d*\.\d+)?\s*(bid|offered|offer)\s*(?:@|at|-)?\s*(\d+\.\d+)"
+    size_name_cusip_action_price_pattern = r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(bid|offered|offer)\s*(?:@|at|-)?\s*(\d*\.\d+)"
+    name_cusip_action_price_pattern = r"([\w\s-]+?)\s+\((\w+)\)\s+(bid|offered|offer)\s*(?:@|at|-)?\s*(\d+\.\d+)"
     dual_action_pattern = r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(\d+\.\d+)\s+(bid)\s+/\s+(\d+\.\d+)\s+(offer)"
+    bid_for_pattern = r"(\d+\.\d+)\s+bid\s+for\s+([\w\s-]+?)\s+\((\w+)\)"
+    name_cusip_dual_action_pattern = r"([\w\s-]+?)\s+\((\w+)\)\s+-\s+(\d+\.\d+)\s+bid\s+/\s+(\d+\.\d+)\s+offer"
 
     default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Error": line}
-
     entries = []
 
-    # Size-First Format
-    if re.match(size_first_pattern, line):
-        for match in re.finditer(size_first_pattern, line):
-            size, name, cusip, price, action, alt_price = match.groups()
-            entries.append({"Name": name.strip(), "Size": size, "CUSIP": cusip, "Actions": action, "Price": price if price else alt_price, "Error": ""})
+    if re.match(size_name_cusip_action_price_pattern, line):
+        for match in re.finditer(size_name_cusip_action_price_pattern, line):
+            size, name, cusip, action, price = match.groups()
+            entries.append({"Name": name.strip(), "Size": size, "CUSIP": cusip, "Actions": action, "Price": price, "Error": ""})
 
-    # Name-First Format
-    elif re.match(name_first_pattern, line):
-        for match in re.finditer(name_first_pattern, line):
-            name, cusip, alt_price, action, price = match.groups()
-            entries.append({"Name": name.strip(), "Size": "", "CUSIP": cusip, "Actions": action, "Price": price if price else alt_price, "Error": ""})
+    elif re.match(name_cusip_action_price_pattern, line):
+        for match in re.finditer(name_cusip_action_price_pattern, line):
+            name, cusip, action, price = match.groups()
+            entries.append({"Name": name.strip(), "CUSIP": cusip, "Actions": action, "Price": price, "Error": ""})
 
-    # Dual-Action Format
     elif re.match(dual_action_pattern, line):
         for match in re.finditer(dual_action_pattern, line):
             size, name, cusip, bid_price, offer_price = match.groups()
             entries.append({"Name": name.strip(), "Size": size, "CUSIP": cusip, "Actions": "bid", "Price": bid_price, "Error": ""})
             entries.append({"Name": name.strip(), "Size": size, "CUSIP": cusip, "Actions": "offer", "Price": offer_price, "Error": ""})
+
+    elif re.match(bid_for_pattern, line):
+        for match in re.finditer(bid_for_pattern, line):
+            bid_price, name, cusip = match.groups()
+            entries.append({"Name": name.strip(), "CUSIP": cusip, "Actions": "bid", "Price": bid_price, "Error": ""})
+
+    elif re.match(name_cusip_dual_action_pattern, line):
+        for match in re.finditer(name_cusip_dual_action_pattern, line):
+            name, cusip, bid_price, offer_price = match.groups()
+            entries.append({"Name": name.strip(), "CUSIP": cusip, "Actions": "bid", "Price": bid_price, "Error": ""})
+            entries.append({"Name": name.strip(), "CUSIP": cusip, "Actions": "offer", "Price": offer_price, "Error": ""})
 
     return entries if entries else [default_dict]
 
@@ -101,16 +110,8 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     emails_df.to_excel(writer, sheet_name='Unread Emails', index=False)
     sorted_df.to_excel(writer, sheet_name='Sorted', index=False)
 
-print("Emails processed and saved to Excel file.")
-Traceback (most recent call last):
-  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 80, in <module>  
-    entries = parse_line(line.strip())
-  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 30, in parse_line
-    size, name, cusip, price, action, alt_price = match.groups()
-ValueError: too many values to unpack (expected 6)
 
-
-
+Please adjust the pattern formats and add new pattern formats to account for all of the possibilities before which aren't currently being correctly processed.
 
 
 2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10
