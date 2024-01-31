@@ -102,67 +102,9 @@ with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     emails_df.to_excel(writer, sheet_name='Unread Emails', index=False)
     sorted_df.to_excel(writer, sheet_name='Sorted', index=False)
 
-
-Please adjust the pattern formats and add new pattern formats to account for all of the possibilities before which aren't currently being correctly processed.
-
-
-
-
-ERRORS:
-
-Alamo 2023-1 A (011395AJ9) bid at 102.50
-Sorting incorrectly
-CUSIP is being put in the Name column and Name is being put in the CUSIP column.
-
-name_cusip_bid_at_price
-
-
-
-Applies To All: Should not be storing bid/offer for anything.
-If there is bid/offer than it must create two lines (dual-action).
-
-size_name_cusip_offered_at_price
-Is storing correctly. However it must denote if it is bid or offer rather than storing as bid/offer.
-
-
-Tailwind 2022-1 B (87403TAE6) bid at 99
-Had no match. We need to figure out why.
-
-5mm Tailwind 2022-1 C (87403TAF3) 99.20 bid / 99.50 offer
-size_name_cusip_bid_offer
-Stores everything correctly except it is only stored as one line.
-Additionally the price for the bid is not being stored.
-No second line was created with action bid and bid price.
-Actual Output:
-Tailwind 2022-1 C	| 5mm	| 87403TAF3	| bid/offer	| 99.50
-
-Expected Output:
-Tailwind 2022-1 C	| 5mm	| 87403TAF3	| bid	| 99.20
-Tailwind 2022-1 C	| 5mm	| 87403TAF3	| offer	| 99.50
-
-
-size_name_cusip_bid_offer
-
-
-
-size_name_cusip_offered_at_price
-
-
-
-
-
-Res Re 2020-2 CL3 76120AAB8 bid @ 99.00
-Is running with cusip_first_bid_at_price
-And Re 2020-2 CL3 76120AAB8
-76120AAB8 (the CUSIP) is being attached to the name. Additionally, part of the name is being put within the CUSIP column
-Actual Output:
-Re 2020-2 CL3 76120AAB8 |		| Res	| bid/offer	| 99.00
-
-
-
-5mm Kilimanjaro 2021-1 C (49407PAG5) offered @ 100.10
-Ran with name_cusip_offered_at_price_no_size even though it has a size
-
-
-5mm Kilimanjaro 2021-1 C (49407PAG5) - 99.10 bid / 100.10 offer
-Had no match.
+Traceback (most recent call last):
+  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 81, in <module>
+    entries = parse_line(line.strip())
+  File "\\ad-its.credit-agricole.fr\Amundi_Boston\Homedirs\buonomo\@Config\Desktop\Outlook Scanner\ExtractOutlook.py", line 36, in parse_line
+    entries.append({"Name": groups[1].strip(), "Size": groups[0] if key == "size_name_cusip_offered_at_price" else "", "CUSIP": groups[2] if key != "cusip_first_bid_at_price" else groups[0], "Actions": groups[3], "Price": groups[4], "Sentence": line, "Function": key, "Error": ""})
+AttributeError: 'NoneType' object has no attribute 'strip'
