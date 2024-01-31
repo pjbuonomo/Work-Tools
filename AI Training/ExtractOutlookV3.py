@@ -17,10 +17,10 @@ def remove_sheet_if_exists(workbook, sheet_name):
 
 def parse_line(line):
     patterns = {
-        "size_name_cusip_offered_at_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(offered|bid)\s+(?:@|at)\s+(\d*\.\d+)",
-        "name_cusip_bid_at_price": r"([\w\s-]+?)\s+\((\w+)\)\s+(bid)\s+(?:@|at)\s+(\d+\.\d+)",
+        "size_name_cusip_offered_at_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d*\.\d+)",
+        "name_cusip_bid_at_price": r"([\w\s-]+?)\s+\((\w+)\)\s+bid\s+(?:@|at)\s+(\d+\.\d+)",
         "size_name_cusip_bid_offer": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(\d+\.\d+)\s+bid\s+/\s+(\d+\.\d+)\s+offer",
-        "name_cusip_offered_at_price_no_size": r"([\w\s-]+?)\s+\((\w+)\)\s+(offered)\s+(?:@|at)\s+(\d+\.\d+)",
+        "name_cusip_offered_at_price_no_size": r"([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d+\.\d+)",
         "bid_price_for_name_cusip": r"(\d+\.\d+)\s+bid\s+for\s+([\w\s-]+?)\s+\((\w+)\)",
         "cusip_first_bid_at_price": r"(\w+)\s+([\w\s-]+?)\s+bid\s+(?:@|at)\s+(\d+\.\d+)"
     }
@@ -29,26 +29,32 @@ def parse_line(line):
     entries = []
 
     for key, pattern in patterns.items():
-    if re.match(pattern, line):
-        for match in re.finditer(pattern, line):
-            groups = match.groups()
-            entry = {"Sentence": line, "Function": key, "Error": ""}
-            if key == "size_name_cusip_bid_offer":
-                # Create two separate entries for bid and offer
-                entry_bid = entry.copy()
-                entry_bid.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5]})
-                entries.append(entry_bid)
+        if re.match(pattern, line):
+            for match in re.finditer(pattern, line):
+                groups = match.groups()
+                entry = {"Sentence": line, "Function": key, "Error": ""}
+                
+                if key == "size_name_cusip_bid_offer":
+                    # Create two separate entries for bid and offer
+                    entry_bid = entry.copy()
+                    entry_bid.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5]})
+                    entries.append(entry_bid)
 
-                entry_offer = entry.copy()
-                entry_offer.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[6]})
-                entries.append(entry_offer)
-            elif key == "size_name_cusip_offered_at_price":
-                # Determine if it's a bid or offer based on the line content
-                action = "offer" if "offered" in line else "bid"
-                entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[5]})
-                entries.append(entry)
+                    entry_offer = entry.copy()
+                    entry_offer.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[6]})
+                    entries.append(entry_offer)
+
+                elif key == "size_name_cusip_offered_at_price":
+                    # Determine if it's a bid or offer based on the line content
+                    action = "offer" if "offered" in line else "bid"
+                    entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[5]})
+                    entries.append(entry)
+
+                # Add handling for other patterns here if necessary
+                # ...
 
     return entries if entries else [default_dict]
+
 
 
 
