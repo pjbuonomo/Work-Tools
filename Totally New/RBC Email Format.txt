@@ -1,0 +1,134 @@
+Traded Merna 22-3 , Matterhorn 22-1 A , and the Nakama 21-1-2 on Friday 
+
+Market Blue Halo 22 B 095538AG9 100.15-100.95 3mm+x3mm+
+Buyer  Kili 19-2 A2 79.5
+Buyer Kili 21-1 B1 49407PAF7 98.5
+Buyer Kili 21-2 B2 49407PAJ9 97.6
+Buyer Atlas 22 04921WAA5  102.60
+Buyer Merna 22-359013MAG7 102.40
+Buyer Ursa 22-1 A 91734PAD8 100
+Buyer Sanders 21-2 A 80001MAA0  97.90
+Buyer Taranis B 87609TAB4 100.40
+
+Seller 
+Baldwin 21 	05826BAA4	99.250	258.9	2000
+Montoya 22-1 A 	613752AA2	101.500	544.8	3000
+Blue Halo 22 B	095538AG9	100.850	1427.9	3000
+Bonanza 20-II	09785EAD3	97.100	836.3	525
+Long Walk 	54289CAA0	100.600	886.8	1000
+Sakura 21-1 A 	79381MAA2	100.000	227.3	3000
+Four Lakes 23-1 A 	35087TAE8	101.600	478.3	500
+
+Buyer 
+Alamo 21 	011395AG5	100.993	433.0
+Alamo 23-1 A 	011395AJ9	102.500	727.7
+Aquila 23 B 	03843AAB8	101.600	670.4
+Aquila C 	03843AAC6	102.400	804.2
+Atlas 22	04921WAA5	102.600	785.3
+Bayou 23-1 A 	07304LAA9	102.400	1150.2
+Bayou 23-1 B	07304LAB7	104.000	1728.3
+Black Kite 	092168AA1	100.650	629.0
+Blue Halo 22-1 A 	095538AF1	96.500	1334.6
+Blue Halo 22 B 	095538AG9	100.050	1511.6
+Blue Ridge 23-1 B 	096003AB4	100.400	783.6
+Blue Sky 23-1 A 	09605UAA1	100.150	568.3
+Bonanza 20-1 A 	09785EAC5	98.500	3212.3
+Bonanza 20-2 A 	09785EAD3	88.250	1981.8
+Bonanza 22-1 A	09785EAJ0	89.750	1617.9
+Catahoula 22 A 	148805AA2	103.600	742.0
+Citrus 23-1 B 	177510AM6	101.800	809.6
+Cosaint	22112CAA0	98.500	1817.7
+East Lane 24-1 A 	27332EAA9	100.350	881.8
+Easton 24-1 A	27777AAA9	100.200	713.1
+Everglades 21-1 A 	30014LAF1	100.573	456.0
+Everglades 21-1 B 	30014LAG9	100.766	490.0
+Everglades 21-2 A 	30014LAH7	100.453	450.0
+Everglades 22-1 A 	30014LAJ3	99.800	891.4
+Floodsmart 21 B	33975CAH8	92.900	10864.3
+Floodsmart 22 A	33975CAJ4	97.400	1450.3
+Floodsmart 22-1 B	33975CAK1	98.150	1624.5
+Floodsmart 23 A	33975CAM7	102.700	1467.6
+Galileo 23-1 A 	36354TAN2	100.200	689.4
+Galileo 23-1 B 	36354TAP7	100.200	680.6
+Gateway 23-1 A 	36779CAC0	105.250	1003.8
+Gateway 23-1 B 	36779CAD8	106.400	1615.7
+Gateway 2 23-1 A 	367927AA8	102.000	845.8
+Herbie 20-2 	42703VAB9	99.200	762.2
+Herbie 21-1 A 	42703VAE3	59.000	6796.3
+Hestia 23-1 A 	42815KAB8	102.400	847.6
+Hexagon 23 A	428270AA0	100.400	836.9
+Hypatia 23-1  	44914CAC0	103.800	749.0
+Hypatia 23 -1 A 	44914CAC0	104.300	723.3
+Integrity 23 	45833UAH4	103.900	884.1
+Kili 19-2 A2 	49407PAC4	79.500	4639.2
+Lightning 23-1 A 	532242AA2	106.250	763.9
+Long Walk 23-1 A 	54289CAA0	100.250	906.9
+Lower Ferry B 	547915AB4	100.000	500.0
+Matterhorn 22-1 A	577092AP4	96.400	863.7
+Matterhorn 22-1 B 	577092AQ2	98.700	896.1
+Matterhorn 22-2 C	577092AU3	101.454	475.0
+Merna 21-1 A 	59013MAC6	99.800	508.5
+Merna 21-2 A 	59013MAD4	99.082	765.0
+Merna 21-2 	59013MAD4	98.700	855.9
+Merna 22-3 A 	59013MAG7	102.400	571.3
+Merna 23-1 A 	59013MAH5	101.900	682.3
+Merna 23-2 A 	59013MAJ1	104.200	818.9
+Metrocat 23 	59165HAD1	101.250	457.3
+Mona Lisa 23-1 B 	608800AG3	107.650	800.8
+Montoya 24-1 A 	613752AC8	100.300	1136.5
+Mystic 23-1 A 	62865LAD9	103.900	698.2
+Mystic 24-1 A 	62865LAE7	100.400	1029.2
+Ocelot 23-1 A 	675951AA5	100.200	764.6
+Polestar	73110JAA0	100.250	1283.1
+Queen 23 	747977AA4	101.900	633.6
+Res 23-2-5	76090WAC4	100.300	565.1
+Res 22-1 14 	76119YAE3	94.000	694.2
+Res 20-2-3 	76120AAB8	97.900	1130.6
+Res 19-1-12 	76120FAA9	65.000	2016.6
+Riverfront 21 B 	76870YAE2	95.000	1288.7
+Sakura 22-1 A 	79381MAC8	106.800	943.2
+Sanders 23-2 A 	799925AA0	102.400	529.0
+Sanders 22-1 A 	80000XAA7	94.650	639.0
+Sanders 23-3 A 	80000YAA5	101.800	557.7
+Sanders 22-2A 	80001EAA8	101.400	699.4
+Sanders 21-2 A	80001MAA0	97.900	492.5
+Sanders 21-2 A 	80001MAA0	95.400	722.9
+Stabilitas 	85237TAA0	102.900	706.4
+Sutter 23 E 	86944RAF5	100.100	966.0
+Titania 23-1 A 	888329AC3	107.800	796.7
+Titania 23 B 	888329AD1	106.400	918.8
+Tomoni A 	89009PAA6	97.900	304.7
+Topanga 	89055TAA1	91.750	813.9
+Topanga 21 B 	89055TAB9	80.000	659.9
+Torrey Pines 23-1 B 	89141WAG7	99.650	767.1
+Cat re 23-1 A	90215BAB3	100.300	1230.9
+Ursa 23-1 C 	90323WAM2	100.400	799.0
+Ursa 23-3 D 	90323WAQ3	100.300	861.2
+Umigame 21 A1 	90421FAA6	97.900	409.3
+Ursa 22-1 A 	91734PAD8	100.000	498.9
+Veraison 23-1 A 	92335TAA7	102.900	497.7
+Vitality 23-1 B 	92851QAB5	99.950	450.6
+Wrigley 23 B 	982533AC5	101.250	640.7
+Yosemite	98740RAA7	102.900	761.2
+IBRD 128 - Pacific	BG4276286	48.500	75438.5
+Lion	BQ1463927	97.000	631.9
+Eifel 23-1 A 	ZJ0796392	98.900	366.1
+
+
+Dan Madison | Managing Director
+RBC
+57 River St
+Suite 102
+Wellesley Hills MA 02481, US
+617-725-2210 
+
+“Please see below a link to the RBCCM FICC Client Notice which has recently been updated. This Notice highlights some of the key terms of our trading relationship with our clients. If you have any questions please let us know.
+
+https://www.rbccm.com/assets/rbccm/docs/legal/fixed-income/ficc-client-notice.pdf “
+
+
+RBC Wealth Management does not accept buy, sell, or cancel orders by email, or any instructions by email that would require your signature. Please visit RBC Wealth Management Email Disclosures for material details about our products and accounts, as well as for other important information.
+Investment and insurance products offered through RBC Wealth Management are not insured by the FDIC or any other federal government agency, are not deposits or other obligations of, or guaranteed by, a bank or any bank affiliate, and are subject to investment risks, including possible loss of the principal amount invested.
+
+Disclosure information regarding potential conflicts of interest on the part of RBC Capital Markets, LLC in connection with companies that are the subject of any third-party research report included in this email message may be found at Third-Party Research Disclosures.
+RBC Wealth Management, a division of RBC Capital Markets, LLC, Member NYSE/FINRA/SIPC.
