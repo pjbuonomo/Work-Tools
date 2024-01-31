@@ -103,18 +103,11 @@ excel_file_path = "//ad-its.credit-agricole.fr/Amundi_Boston/Homedirs/buonomo/@C
 # Open the workbook and remove sheets if they exist
 workbook = openpyxl.load_workbook(excel_file_path)
 remove_sheet_if_exists(workbook, 'Unread Emails')
-remove_sheet_if_exists(workbook, 'Sorted')
+remove_sheet_if_exists(workbook, 'SortedV3')
 workbook.save(excel_file_path)
 workbook.close()
 
 # Save to Excel with two sheets
 with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     emails_df.to_excel(writer, sheet_name='Unread Emails', index=False)
-    sorted_df.to_excel(writer, sheet_name='Sorted', index=False)
-
-
-
-
-
-
-
+    sorted_df.to_excel(writer, sheet_name='SortedV3', index=False)
