@@ -29,13 +29,20 @@ def parse_line(line):
     entries = []
 
     for key, pattern in patterns.items():
-        if re.match(pattern, line):
+        if re.search(pattern, line):
             for match in re.finditer(pattern, line):
                 groups = match.groups()
                 entry = {"Sentence": line, "Function": key, "Error": ""}
-                
-                if key == "size_name_cusip_bid_offer":
-                    # Create two separate entries for bid and offer
+
+                if key == "size_name_cusip_offered_at_price":
+                    action = "offer"
+                    entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[6]})
+
+                elif key == "name_cusip_bid_at_price":
+                    action = "bid"
+                    entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": action, "Price": groups[2]})
+
+                elif key == "size_name_cusip_bid_offer":
                     entry_bid = entry.copy()
                     entry_bid.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5]})
                     entries.append(entry_bid)
@@ -43,17 +50,23 @@ def parse_line(line):
                     entry_offer = entry.copy()
                     entry_offer.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[6]})
                     entries.append(entry_offer)
+                    continue
 
-                elif key == "size_name_cusip_offered_at_price":
-                    # Determine if it's a bid or offer based on the line content
-                    action = "offer" if "offered" in line else "bid"
-                    entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[5]})
-                    entries.append(entry)
+                elif key == "name_cusip_offered_at_price_no_size":
+                    action = "offer"
+                    entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": action, "Price": groups[2]})
 
-                # Add handling for other patterns here if necessary
-                # ...
+                elif key == "bid_price_for_name_cusip":
+                    entry.update({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0]})
+
+                elif key == "cusip_first_bid_at_price":
+                    action = "bid"
+                    entry.update({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": action, "Price": groups[2]})
+
+                entries.append(entry)
 
     return entries if entries else [default_dict]
+
 
 
 def write_df_to_excel(writer, df, sheet_name):
