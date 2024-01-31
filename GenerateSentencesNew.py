@@ -9,10 +9,10 @@ def remove_sheet_if_exists(workbook, sheet_name):
 
 # Function to generate a sentence based on the data row
 def generate_sentence(row):
-    cusip = row[0]  # Column 1 (CUSIP)
-    name = row[1]   # Column 1 (Name)
-    size = row[2]   # Column 2 (Size)
-    action = row[3].strip().lower()  # Column 3 (Actions)
+    cusip = str(row[0]).strip()  # Column 1 (CUSIP)
+    name = str(row[1]).strip()   # Column 1 (Name)
+    size = row[2]   # Column 2
+    action = str(row[3]).strip().lower()  # Column 3
     price = row[4]  # Column 4 (Price)
 
     # Generate a random other_price between 98.20 and 100.10
