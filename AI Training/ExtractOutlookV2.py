@@ -28,31 +28,37 @@ def parse_line(line):
     if re.match(size_name_cusip_action_price_pattern, line):
         for match in re.finditer(size_name_cusip_action_price_pattern, line):
             groups = match.groups()
-            entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": groups[5], "Price": groups[7], "Error": ""})
+            if len(groups) >= 8:
+                entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": groups[5], "Price": groups[7], "Error": ""})
 
     elif re.match(name_cusip_action_price_pattern, line):
         for match in re.finditer(name_cusip_action_price_pattern, line):
             groups = match.groups()
-            entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": groups[2], "Price": groups[4], "Error": ""})
+            if len(groups) >= 5:
+                entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": groups[2], "Price": groups[4], "Error": ""})
 
     elif re.match(dual_action_pattern, line):
         for match in re.finditer(dual_action_pattern, line):
             groups = match.groups()
-            entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[6], "Error": ""})
-            entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[7], "Error": ""})
+            if len(groups) >= 8:
+                entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[6], "Error": ""})
+                entries.append({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[7], "Error": ""})
 
     elif re.match(bid_for_pattern, line):
         for match in re.finditer(bid_for_pattern, line):
             groups = match.groups()
-            entries.append({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0], "Error": ""})
+            if len(groups) >= 3:
+                entries.append({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0], "Error": ""})
 
     elif re.match(name_cusip_dual_action_pattern, line):
         for match in re.finditer(name_cusip_dual_action_pattern, line):
             groups = match.groups()
-            entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "bid", "Price": groups[2], "Error": ""})
-            entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "offer", "Price": groups[3], "Error": ""})
+            if len(groups) >= 4:
+                entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "bid", "Price": groups[2], "Error": ""})
+                entries.append({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "offer", "Price": groups[3], "Error": ""})
 
     return entries if entries else [default_dict]
+
 
 
 def write_df_to_excel(writer, df, sheet_name):
