@@ -18,19 +18,30 @@ def generate_sentence(row):
     # Generate a random other_price between 98.20 and 100.10
     other_price = round(random.uniform(98.20, 100.10), 2)
 
-    # Sentence formats
-    formats = [
+    # Define sentence formats
+    formats_with_size = [
         f"{price} {action} for {size} {name} ({cusip})",
         f"{size} {name} ({cusip}) offered at {price}" if action == 'bid' else f"{size} {name} ({cusip}) bid at {price}",
         f"{size} {name} ({cusip}) - {price} bid / {other_price} offer",
-        f"{name} ({cusip}) bid at {price}",
         f"{size} {name} ({cusip}) - bid at {price} / offered at {other_price}",
         f"{size} {name} ({cusip}) - bid @ {price} / offered @ {other_price}",
         f"{size} {name} ({cusip}) - bid @ {price} / offer @ {other_price}",
+        f"{size} {name} ({cusip}) {action}ed @ {price}",
+        f"{size} {name} ({cusip}) - {action} @ {price} / {other_action} @ {other_price}"
+    ]
+
+    formats_without_size = [
+        f"{name} ({cusip}) bid at {price}",
         f"{cusip} {name} offered @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
         f"{cusip} {name} offer @ {price}" if action == 'offer' else f"{cusip} {name} bid @ {price}",
-        f"{size} {name} ({cusip}) offered at {price}"
+        f"{name} ({cusip}) offered at {price}"
     ]
+
+    # Choose the appropriate list of formats based on size
+    if size == 0:
+        formats = formats_without_size
+    else:
+        formats = formats_with_size + formats_without_size
 
     return random.choice(formats)
 
