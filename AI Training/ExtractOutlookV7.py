@@ -14,7 +14,7 @@ def extract_content_up_to_marker(body, marker):
 def remove_sheet_if_exists(workbook, sheet_name):
     if sheet_name in workbook.sheetnames:
         workbook.remove(workbook[sheet_name])
-
+""""
 def parse_line(line):
     patterns = {
         "size_name_cusip_offered_at_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d*\.\d+)",
@@ -67,7 +67,55 @@ def parse_line(line):
                 break
 
     return entries if entries else [default_dict]
+""""
 
+def parse_line(line):
+    patterns = {
+        "size_name_cusip_offered_at_price": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d*\.\d+)",
+        "name_cusip_bid_at_price": r"([\w\s-]+?)\s+\((\w+)\)\s+bid\s+(?:@|at)\s+(\d+\.\d+)",
+        "size_name_cusip_bid_offer": r"(\d+(\.\d+)?(mm|m|k))\s+([\w\s-]+?)\s+\((\w+)\)\s+(\d+\.\d+)\s+bid\s+/\s+(\d+\.\d+)\s+offer",
+        "name_cusip_offered_at_price_no_size": r"([\w\s-]+?)\s+\((\w+)\)\s+offered\s+(?:@|at)\s+(\d+\.\d+)",
+        "bid_price_for_name_cusip": r"(\d+\.\d+)\s+bid\s+for\s+([\w\s-]+?)\s+\((\w+)\)",
+        "cusip_first_bid_at_price": r"(\w+)\s+([\w\s-]+?)\s+bid\s+(?:@|at)\s+(\d+\.\d+)",
+    }
+
+    default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Sentence": line, "Function": "No Match", "Error": line}
+    entries = []
+
+    for key, pattern in patterns.items():
+        match = re.search(pattern, line)
+        if match:
+            groups = match.groups()
+            entry = {"Sentence": line, "Function": key, "Error": ""}
+
+            if key == "size_name_cusip_offered_at_price":
+                entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[5]})
+
+            elif key == "name_cusip_bid_at_price":
+                entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "bid", "Price": groups[2]})
+
+            elif key == "size_name_cusip_bid_offer":
+                # Here we handle both bid and offer prices by creating two separate entries.
+                entries.extend([
+                    {"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5], "Sentence": line, "Function": key, "Error": ""},
+                    {"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[6], "Sentence": line, "Function": key, "Error": ""}
+                ])
+                continue
+
+            elif key == "name_cusip_offered_at_price_no_size":
+                entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": "offer", "Price": groups[2]})
+
+            elif key == "bid_price_for_name_cusip":
+                entry.update({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0]})
+
+            elif key == "cusip_first_bid_at_price":
+                entry.update({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": "bid", "Price": groups[2]})
+
+            if key != "size_name_cusip_bid_offer":  # All cases except bid/offer handled above
+                entries.append(entry)
+                break
+
+    return entries if entries else [default_dict]
 
 
 def write_df_to_excel(writer, df, sheet_name):
