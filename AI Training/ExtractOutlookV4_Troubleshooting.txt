@@ -1,0 +1,38 @@
+For some reason the line
+2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10
+
+
+Is being processed as two lines.
+Gateway 2023-3 A	2.25mm	36779CAF3	offer	107.10 processed with size_name_cusip_offered_at_price
+25mm Gateway 2023-3 A		36779CAF3	offer	107.10	2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10	processed with name_cusip_offered_at_price_no_size	
+
+
+
+500k Res Re 2020-I 13 (76124AAB4) offered @ 98.30
+Actual Output:
+500k Res Re 2020-I 13 | 	|	76124AAB4	| offer	| 98.30
+As you can see, size ends up not populating. Processed with name_cusip_offered_at_price_no_size
+Expected Output:
+Res Re 2020-I 13 | 500k	|	76124AAB4	| offer	| 98.30
+
+
+
+
+
+25mm Gateway 2023-3 A		36779CAF3	offer	107.10	2.25mm Gateway 2023-3 A (36779CAF3) offered @ 107.10	name_cusip_offered_at_price_no_size
+2.25mm Gateway 2023-3 A (36779CAF3) 102 bid / 107.00 offer Had No Match
+
+
+1.25mm Gateway 2023-1 A (36779CAC0) offered @ 109.90 processed with size_name_cusip_offered_at_price
+And processed entirely correct.
+But then it processed a second time with name_cusip_offered_at_price_no_size when it shouldn't even be processed a second time at all. 
+1.25mm Gateway 2023-1 A (36779CAC0) offered @ 109.90
+
+
+
+Processed with name_cusip_offered_at_price_no_size
+Actual Output:
+25mm Gateway 2023-1 A	|   |	 36779CAC0	| offer	| 109.90
+Expected Output:
+Gateway 2023-1 A | 1.25mm | 36779CAC0 | offer | 109.90
+
