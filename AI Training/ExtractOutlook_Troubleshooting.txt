@@ -1,0 +1,29 @@
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+2mm Northshore 2022-1 A (666842AE9) - 103.50 bid / 104 offer
+2.5mm Galileo 2023-1 A (36354TAN2)- 101.25 bid / 101.60 offer
+2.5mm Galileo 2023-1 B (36354TAP7) -101.25 bid / 101.60 offer
+1mm Purple Re 2023-1 A (74639NAA1) - 102.35 bid / 103.10 offer
+2mm Northshore 2022-1 A (666842AE9) - 103.50 bid / 104 offer
+500k Hypatia Re 2023-1 A (44914CAC0)- 104.50 bid / 106.20 offer
+425k Mayflower 2023-1 (57839MAA6) - 101.70 bid / 102.35 offer
+5mm Kilimanjaro 2021-1 C (49407PAG5) - 99.10 bid / 100.10 offer
+All Receive No Match
+It appears we need to add a means to sort out one that starts with Size and requires Dual Action.
+
+
+
+
+Res Re 2020-2 CL3 76120AAB8 bid @ 99.00
+Processed with cusip_first_bid_at_price
+
+Actual Output:
+Re 2020-2 | CL3 76120AAB8	|	Res |	bid	| 99.00
+
+Expected Output:
+Re 2020-2 | CL3 76120AAB8	|	Res |	bid	| 99.00
+Res Re 2020-2 CL3 | 76120AAB8 | bid | 99.00
+
+Problems:
+Stores Res in CUSIP even though it is part of the title.
+cusip_first_bid_at_price should not be what is used for this.
+
