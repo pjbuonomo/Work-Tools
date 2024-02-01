@@ -25,47 +25,48 @@ def parse_line(line):
         "cusip_first_bid_at_price": r"(\w+)\s+([\w\s-]+?)\s+bid\s+(?:@|at)\s+(\d+\.\d+)"
     }
 
-default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Sentence": line, "Function": "No Match", "Error": line}
-entries = []
+    default_dict = {"Name": "", "Size": "", "CUSIP": "", "Actions": "", "Price": "", "Sentence": line, "Function": "No Match", "Error": line}
+    entries = []
 
-for key, pattern in patterns.items():
-    if re.search(pattern, line):
-        for match in re.finditer(pattern, line):
-            groups = match.groups()
-            entry = {"Sentence": line, "Function": key, "Error": ""}
+    for key, pattern in patterns.items():
+        match = re.search(pattern, line)
+        if match:
+                groups = match.groups()
+                entry = {"Sentence": line, "Function": key, "Error": ""}
 
-            if key == "size_name_cusip_offered_at_price":
-                action = "offer"
-                entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[5]})
+                if key == "size_name_cusip_offered_at_price":
+                    action = "offer"
+                    entry.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": action, "Price": groups[5]})
 
-            elif key == "name_cusip_bid_at_price":
-                action = "bid"
-                entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": action, "Price": groups[2]})
+                elif key == "name_cusip_bid_at_price":
+                    action = "bid"
+                    entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": action, "Price": groups[2]})
 
-            elif key == "size_name_cusip_bid_offer":
-                entry_bid = entry.copy()
-                entry_bid.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5]})
-                entries.append(entry_bid)
+                elif key == "size_name_cusip_bid_offer":
+                    entry_bid = entry.copy()
+                    entry_bid.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "bid", "Price": groups[5]})
+                    entries.append(entry_bid)
 
-                entry_offer = entry.copy()
-                entry_offer.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[5]})
-                entries.append(entry_offer)
-                continue
+                    entry_offer = entry.copy()
+                    entry_offer.update({"Name": groups[3].strip(), "Size": groups[0], "CUSIP": groups[4], "Actions": "offer", "Price": groups[5]})
+                    entries.append(entry_offer)
+                    continue
 
-            elif key == "name_cusip_offered_at_price_no_size":
-                action = "offer"
-                entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": action, "Price": groups[2]})
+                elif key == "name_cusip_offered_at_price_no_size":
+                    action = "offer"
+                    entry.update({"Name": groups[0].strip(), "CUSIP": groups[1], "Actions": action, "Price": groups[2]})
 
-            elif key == "bid_price_for_name_cusip":
-                entry.update({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0]})
+                elif key == "bid_price_for_name_cusip":
+                    entry.update({"Name": groups[1].strip(), "CUSIP": groups[2], "Actions": "bid", "Price": groups[0]})
 
-            elif key == "cusip_first_bid_at_price":
-                action = "bid"
-                entry.update({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": action, "Price": groups[2]})
+                elif key == "cusip_first_bid_at_price":
+                    action = "bid"
+                    entry.update({"Name": groups[1].strip(), "CUSIP": groups[0], "Actions": action, "Price": groups[2]})
 
-            entries.append(entry)
+                entries.append(entry)
+                break
 
-return entries if entries else [default_dict]
+    return entries if entries else [default_dict]
 
 
 
@@ -116,11 +117,11 @@ excel_file_path = "//ad-its.credit-agricole.fr/Amundi_Boston/Homedirs/buonomo/@C
 # Open the workbook and remove sheets if they exist
 workbook = openpyxl.load_workbook(excel_file_path)
 remove_sheet_if_exists(workbook, 'Unread Emails')
-remove_sheet_if_exists(workbook, 'SortedV3')
+remove_sheet_if_exists(workbook, 'SortedV4')
 workbook.save(excel_file_path)
 workbook.close()
 
 # Save to Excel with two sheets
 with pd.ExcelWriter(excel_file_path, engine='openpyxl', mode='a') as writer:
     emails_df.to_excel(writer, sheet_name='Unread Emails', index=False)
-    sorted_df.to_excel(writer, sheet_name='SortedV3', index=False)
+    sorted_df.to_excel(writer, sheet_name='SortedV4', index=False)
